@@ -1,4 +1,4 @@
-'use strict';
+
 
 class BinarySearchTree {
   constructor(key=null, value=null, parent=null) {
@@ -127,7 +127,9 @@ function main(){
   bst.insert(90, 'ninety');
   bst.insert(22, 'twentytwo');
 
-  console.log(preorder(bst));
+  // console.log(preorder(bst));
+  // console.log(inorder(bst));
+  console.log(postorder(bst));
 }
 
 main();
@@ -136,17 +138,44 @@ main();
 //output: array of values
 
 function preorder(tree){
-  const resultArr = [];
+  // const resultArr = [];
   //base case
   if(!tree){
     return [];
   }
 
-  resultArr.push(tree.key);
+  // resultArr.push(tree.key);
 
-  const leftValues = resultArr
-    .concat(preorder(tree.left))
+  const leftValues = [tree.key]
+    .concat(preorder(tree.left)) 
     .concat(preorder(tree.right));
 
   return leftValues;
+}
+
+function inorder(tree){
+  if(!tree){
+    return [];
+  }
+  const leftValues = []
+    .concat(inorder(tree.left))
+    .concat([tree.key]) 
+    .concat(inorder(tree.right));
+  return leftValues;
+}
+
+function postorder(tree){
+  if(!tree){
+    return [];
+  }
+  const leftValues = []
+    .concat(postorder(tree.left))
+    //when it ends, it starts to collapse after an empty array is returned
+    //then after the whole left side finishes, the right half of the tree
+    //is then called
+    
+    .concat(postorder(tree.right))
+    .concat([tree.key]) ;
+  return leftValues;
+
 }
