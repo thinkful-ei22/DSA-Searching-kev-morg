@@ -85,7 +85,7 @@ class App extends Component {
         <div>
           <p>This input of {this.state.searchNum} took {this.state.linearOp} linear operations</p>
           <p>This input of {this.state.searchNum} 
-            {this.state.binaryOp === -1 ? 'was not found' : `took ${this.state.binaryOp} binary operations`}</p>
+            {this.state.binaryOp === -1 ? 'was not found' : ` took ${this.state.binaryOp} binary operations`}</p>
         </div>
       </div>
     );
